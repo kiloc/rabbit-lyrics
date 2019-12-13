@@ -176,12 +176,16 @@ export default class RabbitLyrics {
 
       // Remove parsed time stamps and append to element
       line = line.replace(/\[(\d+:)?\d+:\d+\.\d+\]/g, "");
+	    line = line.replace(/\$\$(.*)\$\$/, '<span>$1</span>');
 
       // Use Non-Break Space for empty lines. Otherwise, the line hight of
       // will be 0
-      if (!line) {
-        line = "&nbsp;";
-      }
+	    if (!line) {
+		    line = "&nbsp;";
+		    lineElement.innerHTML = line;
+	    } else {
+		    lineElement.innerHTML = `<span>${/^\[([\d|:]*)./.exec(timeStamps[0])[1]}</span>${line}`;
+	    }
 
       lineElement.innerHTML = line;
     }
