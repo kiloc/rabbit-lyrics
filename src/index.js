@@ -186,8 +186,6 @@ export default class RabbitLyrics {
 	    } else {
 		    lineElement.innerHTML = `<span>${/^\[([\d|:]*)./.exec(timeStamps[0])[1]}</span>${line}`;
 	    }
-
-      lineElement.innerHTML = line;
     }
 
     return this;
