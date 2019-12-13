@@ -184,7 +184,7 @@ export default class RabbitLyrics {
 		    line = "&nbsp;";
 		    lineElement.innerHTML = line;
 	    } else {
-		    lineElement.innerHTML = `<span>${/^\[([\d|:]*)./.exec(timeStamps[0])[1]}</span>${line}`;
+		    lineElement.innerHTML = `<span class="timestamp">${/^\[([\d|:]*)./.exec(timeStamps[0])[1]}</span><p>${line}</p>`;
 	    }
     }
 
