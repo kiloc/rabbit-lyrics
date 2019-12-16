@@ -181,8 +181,7 @@ export default class RabbitLyrics {
       // Use Non-Break Space for empty lines. Otherwise, the line hight of
       // will be 0
 	    if (!line) {
-		    line = "&nbsp;";
-		    lineElement.innerHTML = line;
+		    lineElement.innerHTML = '';
 	    } else {
 		    lineElement.innerHTML = `<span class="timestamp">${/^\[([\d|:]*)./.exec(timeStamps[0])[1]}</span><p>${line}</p>`;
 	    }
