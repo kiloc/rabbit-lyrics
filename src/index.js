@@ -279,7 +279,7 @@ export default class RabbitLyrics {
           activeLineElements[activeLineElements.length - 1].offsetTop +
           activeLineElements[activeLineElements.length - 1].offsetHeight) /
         2;
-      this.scrollTop = activeLinesOffsetTop - this.element.clientHeight / 2;
+      this.scrollTop = activeLinesOffsetTop - this.element.clientHeight + 50; // activeLinesOffsetTop - this.element.clientHeight / 2;
 
       // Start scrolling animation
       clearInterval(this.scrollerInterval);
