@@ -147,6 +147,13 @@ export default class RabbitLyrics {
       let beginningTimeStamp = line.match(/^\[(\d+:)?\d+:\d+\.\d+\]/g) || [];
       let endingTimeStamp = line.match(/\[(\d+:)?\d+:\d+\.\d+\]$/g) || [];
 
+	    let startTimeStame = '';
+	    try {
+		    startTimeStame = /\(((\d+:)?\d+:\d+)\)/.exec(line)[1];
+	    } catch (e) {
+		    console.warn('start time not existence');
+	    }
+
       // If this line has any timestamps, previous lines without ending
       // time stamps could use its first time stamp as ending time stamp
       if (timeStamps.length && lineElementsWithoutEndingTime.length) {
@@ -176,14 +183,14 @@ export default class RabbitLyrics {
 
       // Remove parsed time stamps and append to element
       line = line.replace(/\[(\d+:)?\d+:\d+\.\d+\]/g, "");
-	    line = line.replace(/\$\$(.*)\$\$(.*)/, '<span>$1</span><span>$2</span>');
+	    line = line.replace(/.*\$\$(.*)\$\$(.*)/, '<span>$1</span><span>$2</span>');
 
       // Use Non-Break Space for empty lines. Otherwise, the line hight of
       // will be 0
 	    if (!line) {
 		    lineElement.innerHTML = '';
 	    } else {
-		    lineElement.innerHTML = `<span class="timestamp">${/^\[([\d|:]*)./.exec(timeStamps[0])[1]}</span><p>${line}</p>`;
+		    lineElement.innerHTML = `<span class="timestamp">${startTimeStame}</span><p>${line}</p>`;
 	    }
     }
 
